@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angularcrud-55940": {
+      "hosting": {
+        "angularCrud": [
+          "angularcrud-55940"
+        ]
+      }
+    }
+  }
+}
