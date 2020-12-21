@@ -1,0 +1,40 @@
+<div style="padding: 24px;" class="row" class="d-flex justify-content-center ">
+  <h1 class="d-flex justify-content-center ">liste Cars</h1>
+
+
+</div>
+<div class="container">
+  <div class="d-flex justify-content-end"> <button type="button" class="btn btn-success">Add</button>
+  </div>
+<div class="d-flex justify-content-center " style="    height: 22%;">
+
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+
+        <th scope="col">full Name</th>
+        <th scope="col">Code 3</th>
+        <th scope="col">Phonne</th>
+        <th scope="col">Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of carsList">
+
+        <td>{{car.cars.fullName}}</td>
+        <td>{{car.cars.code3}}</td>
+        <td>{{car.cars.mobile}}</td>
+        <td>
+          <button type="button" class="btn btn-primary">Edit</button>
+          &nbsp;&nbsp;
+          <button type="button" class="btn btn-danger">Remove</button>
+
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>
