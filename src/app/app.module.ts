@@ -8,29 +8,48 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { CarsComponent } from './component/cars/cars.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { Route, RouterModule } from '@angular/router';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from './shared.module';
 
 
+
+
+const appRoutes: Route[] = [
+  {
+    path: '',
+    loadChildren: () => import('./component/component.module').then(m => m.ComponentModule),
+
+},
+    {
+        path: 'layout',
+        loadChildren: () => import('./component/component.module').then(m => m.ComponentModule),
+    },
+
+    {
+        path: '**',
+        loadChildren: () => import('./component/component.module').then(m => m.ComponentModule),
+
+    }
+];
 
 
 @NgModule({
   declarations: [
-    AppComponent,CarsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatTableModule,
-    MatSidenavModule,
 
+    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireDatabaseModule
-
+    AngularFireDatabaseModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

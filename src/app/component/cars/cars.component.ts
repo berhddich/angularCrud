@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CarsModel, ListCarsModel } from 'src/app/model/cars/cars.model';
 import { CarsService } from 'src/app/service/cars.service';
+import { CreateCarsComponent } from './create-cars/create-cars.component';
 
 @Component({
   selector: 'app-cars',
@@ -16,7 +18,8 @@ export class CarsComponent implements OnInit {
 
 
   constructor(private _carsService: CarsService,
-    private _firestore: AngularFirestore
+
+    public dialog: MatDialog,
   ) {
 
 
@@ -27,31 +30,18 @@ export class CarsComponent implements OnInit {
 
   }
 
-  save(): void {
-    this.cars = {
 
-      code3: 'mar',
-      fullName: 'abdou',
-      mobile: '212642015564'
-
-
-    }
-
-    this._firestore.collection('cars').add(this.cars);
-
-
-  }
 
 
   list(): void {
     this._carsService.carsList().subscribe(data => {
       this.carsList = data.map(e => {
 
-      // this.cc.push() ;
-      let t= e.payload.doc.data();
+        // this.cc.push() ;
+        let t = e.payload.doc.data();
         return {
           id: e.payload.doc.id,
-          cars:e.payload.doc.data() as CarsModel,
+          cars: e.payload.doc.data() as CarsModel,
           // mobile: e.payload.doc.data()['mobile'],
           // fullName: e.payload.doc.data()['fullName'],
           // code3: e.payload.doc.data()['code3'],
@@ -61,15 +51,47 @@ export class CarsComponent implements OnInit {
 
       })
 
-
-      console.log(  this.carsList );
-
-
     })
 
 
   }
 
 
+  add(): void {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.height = '360px';
+    dialogConfig.width = '570px';
+
+
+    this.dialog.open(CreateCarsComponent, dialogConfig).afterClosed()
+      .subscribe(() => {
+
+        this.list();
+      });
+  }
+
+  edit(car: any): void {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.height = '360px';
+    dialogConfig.width = '570px';
+    dialogConfig.data = car;
+
+
+    this.dialog.open(CreateCarsComponent, dialogConfig).afterClosed()
+      .subscribe(() => {
+
+        this.list();
+      });
+
+
+  }
 
 }

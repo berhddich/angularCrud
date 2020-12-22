@@ -1,0 +1,46 @@
+<div mat-dialog-content fusePerfectScrollbar>
+  <div lass="d-flex justify-content-center">
+    <h1  *ngIf="!data" >Creation Cars</h1>
+    <h1  *ngIf="data">Edit Cars</h1>
+  </div>
+
+  <form [formGroup]="createCarsForm" autocomplete="off" class="d-flex flex-column">
+
+    <mat-form-field class="p-2">
+      <mat-label>code3</mat-label>
+      <input matInput formControlName="code3" required>
+      <mat-error>code3 is required!</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="p-2">
+      <mat-label>fullName</mat-label>
+      <input matInput formControlName="fullName" required>
+      <mat-error>fullName is required!</mat-error>
+    </mat-form-field>
+
+
+
+    <mat-form-field class="p-2">
+      <mat-label>mobile</mat-label>
+      <input matInput formControlName="mobile" required>
+      <mat-error>mobile is required!</mat-error>
+    </mat-form-field>
+
+
+
+
+
+
+
+  </form>
+
+
+
+</div>
+<div class="d-flex justify-content-center">
+
+
+  <button (click)=save() type="button" class="btn btn-success"
+    [disabled]="!createCarsForm.valid || saving">Save</button>
+</div>

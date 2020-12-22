@@ -1,15 +1,21 @@
+
+
 <div style="padding: 24px;" class="row" class="d-flex justify-content-center ">
   <h1 class="d-flex justify-content-center ">liste Cars</h1>
 
 
+
 </div>
 <div class="container">
-  <div class="d-flex justify-content-end"> <button type="button" class="btn btn-success">Add</button>
+
+  <div class="d-flex justify-content-end"> <button type="button" (click)="add()" class="btn btn-success">Add</button>
   </div>
-<div class="d-flex justify-content-center " style="    height: 22%;">
+<div  class="d-flex justify-content-center " style="    height: 22%;">
 
-
-  <table class="table">
+  <div *ngIf="!carsList" class="spinner-grow text-danger" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <table class="table" *ngIf="carsList">
     <thead class="thead-dark">
       <tr>
 
@@ -27,7 +33,7 @@
         <td>{{car.cars.code3}}</td>
         <td>{{car.cars.mobile}}</td>
         <td>
-          <button type="button" class="btn btn-primary">Edit</button>
+          <button type="button" class="btn btn-primary" (click)="edit(car)">Edit</button>
           &nbsp;&nbsp;
           <button type="button" class="btn btn-danger">Remove</button>
 
