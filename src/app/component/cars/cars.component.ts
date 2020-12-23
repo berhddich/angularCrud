@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CarsModel, ListCarsModel } from 'src/app/model/cars/cars.model';
 import { CarsService } from 'src/app/service/cars.service';
+import { RemoveComponent } from '../shared-component/remove/remove.component';
 import { CreateCarsComponent } from './create-cars/create-cars.component';
 
 @Component({
@@ -86,6 +87,31 @@ export class CarsComponent implements OnInit {
 
 
     this.dialog.open(CreateCarsComponent, dialogConfig).afterClosed()
+      .subscribe(() => {
+
+        this.list();
+      });
+
+
+  }
+
+
+  remove(id : number): void {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+    dialogConfig.height = '130px';
+    dialogConfig.panelClass = 'event-form-dialog';
+    dialogConfig.width = '360px';
+    dialogConfig.data = {
+
+      id: id,
+      title: 'cars'
+  };
+
+    this.dialog.open(RemoveComponent, dialogConfig).afterClosed()
       .subscribe(() => {
 
         this.list();
