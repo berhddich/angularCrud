@@ -5,19 +5,18 @@ import { Route, RouterModule } from '@angular/router';
 
 
 const routes: Route[] = [
-  {
-    path: '',
-    redirectTo: 'layout'
-},
-    {
-        path: 'layout',
-        loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule),
-    },
 
     {
-        path: '**',
-        redirectTo: 'layout'
-    }
+        path: 'cars',
+        loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule),
+    },
+    {
+      path: 'profils',
+      loadChildren: () => import('./profils/profils.module').then(m => m.ProfilsModule),
+  },
+
+
+
 ];
 
 @NgModule({

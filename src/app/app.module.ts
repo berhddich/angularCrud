@@ -21,17 +21,32 @@ import { SharedModule } from './shared.module';
 const appRoutes: Route[] = [
   {
     path: '',
-    loadChildren: () => import('./component/component.module').then(m => m.ComponentModule),
+    redirectTo: 'app/dashboard' ,
+    pathMatch: 'full'
 
 },
     {
-        path: 'layout',
-        loadChildren: () => import('./component/component.module').then(m => m.ComponentModule),
+        path: 'app',
+        children:[
+
+          {
+            path: 'work',
+            loadChildren: () => import('./component/component.module').then(m => m.ComponentModule),
+
+        } ,
+        {
+          path: '',
+          loadChildren: () => import('./home-page/home-page.module').then(m => m.HomePageModule),
+
+      }
+
+
+        ]
     },
 
     {
         path: '**',
-        loadChildren: () => import('./component/component.module').then(m => m.ComponentModule),
+        redirectTo: 'app/dashboard'
 
     }
 ];

@@ -4,20 +4,19 @@ import { CarsModel } from '../model/cars/cars.model';
 
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class CarsService {
-formData: CarsModel;
+  formData: CarsModel;
 
-constructor( private firestor : AngularFirestore){
+  constructor(private firestor: AngularFirestore) {
 
-}
+  }
 
-carsList()
-{
+  carsList() {
 
-return this.firestor.collection('cars').snapshotChanges();
+    return this.firestor.collection('cars').snapshotChanges();
 
-}
+  }
 
 }
