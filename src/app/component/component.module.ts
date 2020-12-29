@@ -6,7 +6,8 @@ import { Route, RouterModule } from '@angular/router';
 
 const routes: Route[] = [
 
-    {
+
+  {
         path: 'cars',
         loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule),
     },
