@@ -51,7 +51,7 @@ export class ProfilsComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = false;
-    dialogConfig.height = '360px';
+    dialogConfig.height = '570px';
     dialogConfig.width = '570px';
 
 
@@ -68,7 +68,7 @@ export class ProfilsComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = false;
-    dialogConfig.height = '360px';
+    dialogConfig.height = '570px';
     dialogConfig.width = '570px';
     dialogConfig.data = car;
 

@@ -1,3 +1,64 @@
-<p>
-  create-edit-profils works!
-</p>
+
+<div >
+  <div lass="d-flex justify-content-center">
+    <h1  *ngIf="!data" >Creation profil</h1>
+    <h1  *ngIf="data">Edit profil</h1>
+  </div >
+
+  <form [formGroup]="createOredit" autocomplete="off" class="d-flex flex-column">
+
+    <mat-form-field class="p-2">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" required>
+      <mat-error>FirstName is required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="p-2">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" required>
+      <mat-error>Last Name is required!</mat-error>
+    </mat-form-field>
+    <mat-form-field class="p-2">
+      <mat-label>Nationalite</mat-label>
+      <input matInput formControlName="nationalite" required>
+      <mat-error>Nationalite is required!</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="p-2">
+      <mat-label>Age</mat-label>
+      <input matInput formControlName="age" type="number" required>
+      <mat-error>Age is required!</mat-error>
+    </mat-form-field>
+
+
+
+    <mat-form-field class="p-2">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required>
+      <mat-error>Email is required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="p-2">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber"  required>
+      <mat-error>phoneNumber is required!</mat-error>
+    </mat-form-field>
+
+
+
+
+
+
+
+  </form>
+
+
+
+</div>
+<div class="d-flex justify-content-center">
+
+
+  <button (click)=save() type="button" class="btn btn-success"
+    [disabled]="!createOredit.valid || saving">Save</button>
+</div>
