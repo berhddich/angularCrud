@@ -9,11 +9,11 @@ const routes: Route[] = [
 
   {
         path: 'cars',
-        loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule),
+        loadChildren: () => import('./app-component/cars/cars.module').then(m => m.CarsModule),
     },
     {
       path: 'profils',
-      loadChildren: () => import('./profils/profils.module').then(m => m.ProfilsModule),
+      loadChildren: () => import('./app-component/profils/profils.module').then(m => m.ProfilsModule),
   },
 
 

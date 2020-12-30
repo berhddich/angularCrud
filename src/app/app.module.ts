@@ -14,6 +14,7 @@ import { Route, RouterModule } from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared.module';
+import { NavbarComponent } from './layout/navbar/navbar.component';
 
 
 
@@ -34,9 +35,15 @@ const appRoutes: Route[] = [
             loadChildren: () => import('./component/component.module').then(m => m.ComponentModule),
 
         } ,
+
+        {
+          path: 'auth',
+          loadChildren: () => import('./component/auth/auth.module').then(m => m.AuthModule),
+
+      },
         {
           path: '',
-          loadChildren: () => import('./home-page/home-page.module').then(m => m.HomePageModule),
+          loadChildren: () => import('./component/home-page/home-page.module').then(m => m.HomePageModule),
 
       }
 
@@ -54,7 +61,8 @@ const appRoutes: Route[] = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent ,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -79,9 +79,10 @@ export class CreateEditProfilsComponent implements OnInit {
 
 
       this._firestore.doc('profils/'+this.data.id).update(this.createOredit.value).then(() => {
+        this.close();
         this._notify.openSuccess('Update completed');
         this.saving = false;
-        this.close();
+
       })
         .catch(function (error) {
           console.error("Error writing document: ", error);

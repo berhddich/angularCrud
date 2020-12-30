@@ -1,31 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CarsModel, ListCarsModel } from 'src/app/model/cars/cars.model';
-import { CarsService } from 'src/app/service/cars.service';
-import { RemoveComponent } from '../shared-component/remove/remove.component';
-import { CreateCarsComponent } from './create-cars/create-cars.component';
+import { ListProfilsodel, ProfilsModel } from 'src/app/model/profils/profils.model';
+import { ProfilsService } from 'src/app/service/profils.service';
+import { RemoveComponent } from '../../shared-component/remove/remove.component';
+import { CreateEditProfilsComponent } from './create-edit-profils/create-edit-profils.component';
 
 @Component({
-  selector: 'app-cars',
-  templateUrl: './cars.component.html',
-  styleUrls: ['./cars.component.scss'],
+  selector: 'app-profils',
+  templateUrl: './profils.component.html',
+  styleUrls: ['./profils.component.scss']
 })
-export class CarsComponent implements OnInit {
+export class ProfilsComponent implements OnInit {
+  profils: ProfilsModel;
+  profilsList: ListProfilsodel[];
+  displayedColumns: string[] = ['firstName', 'lastName', 'age', 'nationalite', 'email', 'phoneNumber'];
 
-  cars: CarsModel;
-  carsList: ListCarsModel[];
-  displayedColumns: string[] = ['fullName', 'code3', 'mobile'];
-
-
-  constructor(private _carsService: CarsService,
-
-    public dialog: MatDialog,
-  ) {
-
-
-  }
-
+  constructor(private _profilsService: ProfilsService, public dialog: MatDialog,) { }
   ngOnInit(): void {
     this.list();
 
@@ -35,17 +25,15 @@ export class CarsComponent implements OnInit {
 
 
   list(): void {
-    this._carsService.carsList().subscribe(data => {
-      this.carsList = data.map(e => {
+    this._profilsService.profilList().subscribe(data => {
+      this.profilsList = data.map(e => {
 
-        // this.cc.push() ;
+
         let t = e.payload.doc.data();
         return {
           id: e.payload.doc.id,
-          cars: e.payload.doc.data() as CarsModel,
-          // mobile: e.payload.doc.data()['mobile'],
-          // fullName: e.payload.doc.data()['fullName'],
-          // code3: e.payload.doc.data()['code3'],
+          profil: e.payload.doc.data() as ProfilsModel,
+
 
         };
 
@@ -57,18 +45,17 @@ export class CarsComponent implements OnInit {
 
   }
 
-
   add(): void {
 
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = false;
-    dialogConfig.height = '360px';
+    dialogConfig.height = '570px';
     dialogConfig.width = '570px';
 
 
-    this.dialog.open(CreateCarsComponent, dialogConfig).afterClosed()
+    this.dialog.open(CreateEditProfilsComponent, dialogConfig).afterClosed()
       .subscribe(() => {
 
         this.list();
@@ -81,12 +68,12 @@ export class CarsComponent implements OnInit {
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = false;
-    dialogConfig.height = '360px';
+    dialogConfig.height = '570px';
     dialogConfig.width = '570px';
     dialogConfig.data = car;
 
 
-    this.dialog.open(CreateCarsComponent, dialogConfig).afterClosed()
+    this.dialog.open(CreateEditProfilsComponent, dialogConfig).afterClosed()
       .subscribe(() => {
 
         this.list();
@@ -108,7 +95,7 @@ export class CarsComponent implements OnInit {
     dialogConfig.data = {
 
       id: id,
-      title: 'cars'
+      title: 'profils'
   };
 
     this.dialog.open(RemoveComponent, dialogConfig).afterClosed()
@@ -119,5 +106,6 @@ export class CarsComponent implements OnInit {
 
 
   }
+
 
 }
