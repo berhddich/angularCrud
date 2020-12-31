@@ -15,7 +15,7 @@ export class AuthService {
 
 
 
-    async signInWithEmailAndPassword(loginFrom: any) {
+  async signInWithEmailAndPassword(loginFrom: any) {
 
     return new Promise((resolve, reject) => {
 
@@ -28,15 +28,22 @@ export class AuthService {
 
   async logout() {
 
-    return this.afAuth.signOut();
+    return this.afAuth.signOut().then(res =>
+      localStorage.removeItem('user')
+
+
+    );
 
   }
 
-  islogin() {
+    islogin() {
 
-    return true;
-
-
+    if (localStorage.getItem('user')) {
+      return true;
+    }
+    else {
+      return false;
+    }
 
   }
 

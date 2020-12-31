@@ -5,8 +5,8 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavId">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0"   *ngIf="_authService.islogin()">
+      <li class="nav-item active" >
         <a class="nav-link" routerLink="app/dashboard">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
@@ -25,17 +25,17 @@
   </div>
   <ul class="navbar-nav ml-auto">
 
-    <li class="nav-item"  >
-      <a routerLink="app/auth/register" class="nav-link">Regester</a>
+    <li class="nav-item"   >
+      <a routerLink="app/auth/register" class="nav-link" *ngIf="!_authService.islogin()">Regester</a>
 
     </li>
 
 
     <li class="nav-item" >
-      <a routerLink="app/auth/login" class="nav-link">Login</a>
+      <a routerLink="app/auth/login" class="nav-link" *ngIf="!_authService.islogin()">Login</a>
 
     </li>
-    <li class="nav-item" >
+    <li class="nav-item"  *ngIf="_authService.islogin()">
       <a [routerLink]="" (click)="Logout()" class="nav-link">Logout</a>
 
     </li>
