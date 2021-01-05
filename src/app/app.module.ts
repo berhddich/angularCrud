@@ -15,6 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared.module';
 import { NavbarComponent } from './layout/navbar/navbar.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -32,6 +33,8 @@ const appRoutes: Route[] = [
 
           {
             path: 'work',
+            canActivate: [AuthGuard],
+
             loadChildren: () => import('./component/component.module').then(m => m.ComponentModule),
 
         } ,
@@ -43,6 +46,7 @@ const appRoutes: Route[] = [
       },
         {
           path: '',
+          canActivate: [AuthGuard],
           loadChildren: () => import('./component/home-page/home-page.module').then(m => m.HomePageModule),
 
       }

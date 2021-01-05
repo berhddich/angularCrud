@@ -9,13 +9,11 @@ import { SnackBarService } from 'src/app/service/shared-service/studius-snack-ba
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  isLogged;
   constructor(private _authService: AuthService,
     private router: Router,
 
     private _notify: SnackBarService,) {
 
-      this.isLogged =this._authService.islogin();
 
 
      }
@@ -35,6 +33,13 @@ export class NavbarComponent implements OnInit {
 
       });
 
+
+  }
+
+  loginStatus()
+  {
+
+return this._authService.islogin()
 
   }
 

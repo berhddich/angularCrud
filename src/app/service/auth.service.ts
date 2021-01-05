@@ -26,6 +26,7 @@ export class AuthService {
 
   }
 
+
   async logout() {
 
     return this.afAuth.signOut().then(res =>
