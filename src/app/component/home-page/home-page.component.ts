@@ -13,7 +13,6 @@ export class HomePageComponent implements OnInit {
     private _authService: AuthService) { }
 
   ngOnInit() {
-    console.log(this._authService.currentUser().emailVerified )
 
     if (!(this._authService.islogin())) {
 

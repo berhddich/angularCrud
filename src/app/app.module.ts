@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared.module';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { AuthGuard } from './guards/auth.guard';
+import { EmailVerificationComponent } from './component/email-verification/email-verification.component';
 
 
 
@@ -44,6 +45,8 @@ const appRoutes: Route[] = [
           loadChildren: () => import('./component/auth/auth.module').then(m => m.AuthModule),
 
       },
+
+
         {
           path: '',
           canActivate: [AuthGuard],
@@ -56,6 +59,13 @@ const appRoutes: Route[] = [
     },
 
     {
+
+      path: 'email-verification',
+      component: EmailVerificationComponent
+  }
+    ,
+
+    {
         path: '**',
         redirectTo: 'app/dashboard'
 
@@ -66,7 +76,8 @@ const appRoutes: Route[] = [
 @NgModule({
   declarations: [
     AppComponent ,
-    NavbarComponent
+    NavbarComponent,
+    EmailVerificationComponent
   ],
   imports: [
     BrowserModule,

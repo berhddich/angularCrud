@@ -7,7 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  userData: any; // Save logged in user data
 
   constructor(private afAuth: AngularFireAuth,
     private router: Router,) {
@@ -15,16 +14,6 @@ export class AuthService {
       {
         /* Saving user data in localstorage when
         logged in and setting up null when logged out */
-        this.afAuth.authState.subscribe(user => {
-          if (user) {
-            this.userData = user;
-            localStorage.setItem('user', JSON.stringify(this.userData));
-            JSON.parse(localStorage.getItem('user'));
-          } else {
-            localStorage.setItem('user', null);
-            JSON.parse(localStorage.getItem('user'));
-          }
-        })
       }
      }
 
@@ -56,10 +45,14 @@ export class AuthService {
   }
 
 
-  async logout() {
+   logout() {
 
-    return this.afAuth.signOut().then(res =>
-      localStorage.removeItem('user')
+    return  this.afAuth.signOut().then(res =>{
+      localStorage.clear();
+      localStorage.getItem('user')
+      this.router.navigate(['app/auth/login']);
+
+    }
 
 
     );
@@ -68,7 +61,9 @@ export class AuthService {
 
   islogin() {
 
-    if (localStorage.getItem('user')) {
+    let user = JSON.parse(localStorage.getItem('user')) as boolean;
+
+    if(user){
       return true;
     }
     else {
@@ -77,9 +72,14 @@ export class AuthService {
 
   }
   currentUser() {
-    const user = JSON.parse(localStorage.getItem('user'));
 
-    return user
+   let user = JSON.parse(localStorage.getItem('user'));
+
+    if(user)
+    {return user.emailVerified }
+
+
+    return false
 
   }
 

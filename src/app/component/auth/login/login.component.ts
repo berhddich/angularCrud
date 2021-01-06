@@ -17,14 +17,17 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private _route: ActivatedRoute,
     private router: Router,
-    private _authService: AuthService) { }
+    private _authService: AuthService) {
+      if (this._authService.islogin()) {
+
+        this.router.navigate(['app/dashboard']);
+
+      }
+  }
 
   ngOnInit() {
-    if (this._authService.islogin()) {
 
-      this.router.navigate(['app/dashboard']);
 
-    }
 
     this.loginForm = this.fb.group({
       email: [, Validators.required],

@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit {
   Logout() {
     this._authService.logout().then(() => {
       this._notify.openSuccess('Logout completed');
-      this.router.navigate(['app/auth/login']);
 
 
     })
