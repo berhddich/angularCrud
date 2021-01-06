@@ -10,15 +10,16 @@ import { AuthService } from 'src/app/service/auth.service';
 export class HomePageComponent implements OnInit {
 
   constructor(private router: Router,
-    private _authService:AuthService) { }
+    private _authService: AuthService) { }
 
   ngOnInit() {
-    if(!(this._authService.islogin()))
-{
+    console.log(this._authService.currentUser().emailVerified )
 
-  this.router.navigate(['app/auth/login']);
+    if (!(this._authService.islogin())) {
 
-}
+      this.router.navigate(['app/auth/login']);
+
+    }
   }
 
 }

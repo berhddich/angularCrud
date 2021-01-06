@@ -1,3 +1,32 @@
-<p>
-  register works!
-</p>
+<div class="container mt-5">
+
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card text-center card  bg-default mb-3">
+        <div class="card-header">
+          Register
+        </div>
+        <div class="card-body" [formGroup]="registerForm">
+          <input type="text" id="frestName" class="form-control input-sm chat-input" placeholder="frest Name"
+            formControlName="frestName" required />
+          <br>
+          <input type="text" id="lastNam" class="form-control input-sm chat-input" placeholder="lastNam"
+            formControlName="lastNam" required />
+
+          <br>
+          <input type="text" id="email" class="form-control input-sm chat-input" placeholder="email"
+            formControlName="email" required />
+          <br>
+
+
+
+          <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="Password"
+            formControlName="password" required />
+        </div>
+        <div class="card-footer text-muted">
+          <button (click)=save() class="btn btn-secondary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

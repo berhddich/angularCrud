@@ -10,7 +10,7 @@ import {
 export class SnackBarService {
 
     private config: MatSnackBarConfig<any> = {
-        duration: 2000,
+        duration: 20000,
         horizontalPosition: 'center',
         verticalPosition: 'top'
     };

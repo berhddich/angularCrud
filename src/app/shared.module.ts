@@ -15,7 +15,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRippleModule } from '@angular/material/core';
-;
+import {MatCardModule} from '@angular/material/card';
+
 
 import localeFr from '@angular/common/locales/fr';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -65,8 +66,9 @@ export class SharedModule {
     MatProgressBarModule,
     MatProgressSpinnerModule,
 
-    MatBadgeModule,
 
+    MatBadgeModule,
+    MatCardModule,
     MatPaginatorModule,
     MatRippleModule,
     MatToolbarModule,
