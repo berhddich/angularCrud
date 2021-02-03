@@ -33,4 +33,14 @@ export class EmailVerificationComponent implements OnInit {
 
 
   }
+
+
+
+  verification()
+  {
+
+this._authService.verifyEmail()
+
+
+  }
 }

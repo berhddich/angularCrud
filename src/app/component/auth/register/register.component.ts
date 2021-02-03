@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
 
 
   save(): void {
+
     this._authService.register(this.registerForm.value).then((auth) => {
 
 

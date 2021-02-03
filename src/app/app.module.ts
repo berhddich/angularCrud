@@ -60,6 +60,7 @@ const appRoutes: Route[] = [
 
     {
 
+
       path: 'email-verification',
       component: EmailVerificationComponent
   }
