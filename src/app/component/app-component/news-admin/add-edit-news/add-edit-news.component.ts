@@ -6,7 +6,7 @@ import { TypeNewsModel } from 'src/app/model/news-admin/news-admin';
 import { ListSharedService } from 'src/app/service/shared-service/list-shared.service';
 import { SnackBarService } from 'src/app/service/shared-service/studius-snack-bar/snack-bar.service';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {finalize} from "rxjs/operators"
+import { finalize } from "rxjs/operators"
 import { url } from 'inspector';
 import { Console } from 'console';
 
@@ -23,15 +23,15 @@ export class AddEditNewsComponent implements OnInit {
   listOfTypeNews: TypeNewsModel[];
   formData = new FormData();
   private maxFilesBytesUserFriendlyValue = 5;
-  isEmpty = true;
+  isEmpty = false;
   file;
- base64textString = '';
- img='assets/img/Placeholder.jpg';
- selectedImage:any= null;
+  base64textString = '';
+  img = 'assets/img/Placeholder.jpg';
+  selectedImage: any = null;
 
   constructor(
     private fb: FormBuilder,
-    private afs:AngularFireStorage,
+    private afs: AngularFireStorage,
     private _firestore: AngularFirestore,
     private _notify: SnackBarService,
     private _listTypeNews: ListSharedService,
@@ -44,14 +44,17 @@ export class AddEditNewsComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (this.data) {
+      if (this.data.newsAdmin.storage) {
+        this.img = this.data.newsAdmin.storage;
+
+      }
       this.createEditForm = this.fb.group({
-        titre: [this.data.news.titre, Validators.required],
-        type: [this.data.news.type, Validators.required],
-        Subject: [this.data.news.Subject, Validators.required],
-        source: [this.data.news.Subject],
-        storage: [this.data.news.storage]
+        titre: [this.data.newsAdmin.titre, Validators.required],
+        type: [this.data.newsAdmin.type, Validators.required],
+        Subject: [this.data.newsAdmin.Subject, Validators.required],
+        source: [this.data.newsAdmin.source],
+        storage: [this.data.newsAdmin.storage]
 
       });
 
@@ -80,51 +83,82 @@ export class AddEditNewsComponent implements OnInit {
 
 
 
-    if (!this.data) {
+    if (this.isEmpty) {
+      let filepath = `newsAdmin/images/${this.selectedImage.name}_${new Date().getTime()}`;
+      const fileRef = this.afs.ref(filepath);
+      this.afs.upload(filepath, this.selectedImage).snapshotChanges().pipe(
 
-      let filepath=`newsAdmin/images/${this.selectedImage.name}_${new Date().getTime()}`;
-      const fileRef=this.afs.ref(filepath);
-      this.afs.upload(filepath,this.selectedImage).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.createEditForm.controls['storage'].setValue(url);
+            if (!this.data) {
+              this._firestore.collection('news-admin').add(this.createEditForm.value).then(() => {
+                this._notify.openSuccess('Save completed');
+                this.saving = false;
+                this.close();
+              })
+                .catch(function (error) {
+                  console.error("Error writing document: ", error);
+                  this._notify.openSuccess(error);
+                  this.saving = false;
+                });
+            }
 
-  finalize(()=>{
-    fileRef.getDownloadURL().subscribe((url)=>{
-       this.createEditForm.controls['storage'].setValue(url);
+            else {
+              this._firestore.doc('news-admin/' + this.data.id).update(this.createEditForm.value).then(() => {
+                this._notify.openSuccess('Update completed');
+                this.saving = false;
+                this.close();
+              })
+                .catch(function (error) {
+                  console.error("Error writing document: ", error);
+                  this._notify.openSuccess(error);
+                  this.saving = false;
+                });
 
-       this._firestore.collection('news-admin').add(this.createEditForm.value).then(() => {
-        this._notify.openSuccess('Save completed');
-        this.saving = false;
-        this.close();
-      })
-        .catch(function (error) {
-          console.error("Error writing document: ", error);
-          this._notify.openSuccess(error);
-          this.saving = false;
-        });
+            }
 
-    })
-  })
+
+          })
+        })
 
       ).subscribe();
 
-
     }
+
 
     else {
-
-
-      this._firestore.doc('news-admin/' + this.data.id).update(this.createEditForm.value).then(() => {
-        this._notify.openSuccess('Update completed');
-        this.saving = false;
-        this.close();
-      })
-        .catch(function (error) {
-          console.error("Error writing document: ", error);
-          this._notify.openSuccess(error);
+      if (!this.data) {
+        this._firestore.collection('news-admin').add(this.createEditForm.value).then(() => {
+          this._notify.openSuccess('Save completed');
           this.saving = false;
-        });
+          this.close();
+        })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+            this._notify.openSuccess(error);
+            this.saving = false;
+          });
+      }
 
+      else {
+        this._firestore.doc('news-admin/' + this.data.id).update(this.createEditForm.value).then(() => {
+          this._notify.openSuccess('Update completed');
+          this.saving = false;
+          this.close();
+        })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+            this._notify.openSuccess(error);
+            this.saving = false;
+          });
+
+      }
 
     }
+
+
+
 
 
 
@@ -136,22 +170,20 @@ export class AddEditNewsComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  showPriview(event: any)
-  {
-if(event.target.files && event.target.files[0])
-{
+  showPriview(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.isEmpty = true;
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.img = e.target.result
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    }
+    else {
 
-  const reader=new FileReader();
-  reader.onload=(e:any)=> this.img=e.target.result
-  reader.readAsDataURL(event.target.files[0]);
-  this.selectedImage=event.target.files[0];
-}
-else{
+      this.selectedImage = null;
+      this.img = 'assets/img/Placeholder.jpg';
 
-  this.selectedImage=null;
-  this.img='assets/img/Placeholder.jpg';
-
-}
+    }
 
 
   }

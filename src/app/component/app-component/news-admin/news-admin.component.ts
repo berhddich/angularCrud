@@ -91,10 +91,9 @@ this.listOfTypeNews=this._listTypeNews.typeNewList();
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = false;
-    dialogConfig.height = '360px';
+    dialogConfig.height = '560px';
     dialogConfig.width = '570px';
     dialogConfig.data = car;
-
 
     this.dialog.open(AddEditNewsComponent, dialogConfig).afterClosed()
       .subscribe(() => {
