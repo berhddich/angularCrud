@@ -1,0 +1,46 @@
+
+
+<div style="padding: 24px;" class="row" class="d-flex justify-content-center ">
+  <h1 class="d-flex justify-content-center ">قائمة الأخبار (المشرف)</h1>
+
+
+
+</div>
+<div class="container">
+
+  <div class="d-flex justify-content-end"> <button type="button" (click)="add()" class="btn btn-success">اضافة</button>
+  </div>
+<div  class="d-flex justify-content-center " style="    height: 22%;">
+
+  <div *ngIf="!newsAdminList" class="spinner-grow text-danger" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <table class="table" *ngIf="newsAdminList">
+    <thead class="thead-dark">
+      <tr>
+
+        <th scope="col">العنوان </th>
+        <th scope="col">النوع</th>
+        <th scope="col">المصدر</th>
+        <th scope="col">الاجراءات</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let new of newsAdminList">
+
+        <td>{{new.newsAdmin.titre}}</td>
+        <td >{{findElemenet(new.newsAdmin.type)}}</td>
+        <td>{{new.newsAdmin.source}}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="edit(new)">تعديل</button>
+          &nbsp;&nbsp;
+          <button type="button" class="btn btn-danger" (click)="remove(new.id)">حدف</button>
+
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>

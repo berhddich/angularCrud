@@ -49,7 +49,7 @@ const appRoutes: Route[] = [
 
         {
           path: '',
-          canActivate: [AuthGuard],
+
           loadChildren: () => import('./component/home-page/home-page.module').then(m => m.HomePageModule),
 
       }

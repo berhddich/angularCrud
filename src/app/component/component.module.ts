@@ -15,6 +15,10 @@ const routes: Route[] = [
       path: 'profils',
       loadChildren: () => import('./app-component/profils/profils.module').then(m => m.ProfilsModule),
   },
+  {
+    path: 'news-admin',
+    loadChildren: () => import('./app-component/news-admin/news-admin.module').then(m => m.NewsAdminModule),
+},
 
 
 

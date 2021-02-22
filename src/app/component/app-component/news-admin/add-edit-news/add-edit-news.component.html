@@ -1,0 +1,65 @@
+<div >
+  <div lass="d-flex justify-content-center">
+    <h1 *ngIf="!data">إنْشاء الخبر</h1>
+    <h1 *ngIf="data">تعديل الخبر</h1>
+  </div>
+
+  <form [formGroup]="createEditForm" autocomplete="off" class="d-flex flex-column">
+
+    <mat-form-field class="p-2">
+      <mat-label>العنوان</mat-label>
+      <input matInput formControlName="titre" required>
+      <mat-error>! العنوان مطلوب</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="p-2">
+      <mat-label>النوع</mat-label>
+      <mat-select formControlName="type" required>
+        <!-- <mat-option>{{'MATIERE.LABEL_NON' | translate}}</mat-option> -->
+        <mat-option *ngFor="let type of listOfTypeNews " [value]="type.id">
+          {{type.libelle}}
+        </mat-option>
+      </mat-select>
+      <mat-error>! النوع مطلوب</mat-error>
+    </mat-form-field>
+
+
+
+    <mat-form-field class="p-2">
+      <mat-label> الموضوع</mat-label>
+      <textarea matInput formControlName="Subject" required>
+      </textarea>
+      <mat-error>! الموضوع مطلوب </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="p-2">
+      <mat-label> المصدر</mat-label>
+      <textarea matInput formControlName="source">
+      </textarea>
+      <!-- <mat-error>! المصدر مطلوب </mat-error> -->
+    </mat-form-field>
+<div class="text-center">
+  <img [src]=img  height="250" width="350" (click)="fileUploader.click()">
+
+</div>
+    <div class="p-2">
+      <mat-label>اختر صورة الموضوع</mat-label>
+      <input type="file" accept="image/*" class="form-control" #fileUploader  (change)="showPriview($event)" placeholder="الصورة" />
+    </div>
+
+
+
+
+
+
+  </form>
+
+
+
+</div>
+<div class="d-flex justify-content-center">
+
+
+  <button (click)=save() type="button" class="btn btn-success" [disabled]="!createEditForm.valid || saving">حفظ</button>
+</div>

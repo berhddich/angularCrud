@@ -14,11 +14,11 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
 
-    if (!(this._authService.islogin())) {
+    // if (!(this._authService.islogin())) {
 
-      this.router.navigate(['app/auth/login']);
+    //   this.router.navigate(['app/auth/login']);
 
-    }
+    // }
   }
 
 

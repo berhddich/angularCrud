@@ -1,5 +1,5 @@
  <nav class="navbar navbar-expand-sm navbar-dark bg-primary"> &nbsp;&nbsp;
-  <a class="navbar-brand" routerLink="app/dashboard">My App</a>
+  <a class="navbar-brand" routerLink="app/dashboard">فوق الخط</a>
   &nbsp;&nbsp;<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
     aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,9 +7,13 @@
   <div class="collapse navbar-collapse" id="collapsibleNavId">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0"   *ngIf="loginStatus()">
       <li class="nav-item active" >
-        <a class="nav-link" routerLink="app/dashboard">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="app/dashboard">الرئسية<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
+        <a routerLink="app/work/news-admin" class="nav-link">الاخبار (المشرف)</a>
+
+      </li>
+      <!-- <li class="nav-item">
         <a routerLink="app/work/cars" class="nav-link">Cars</a>
 
       </li>
@@ -18,7 +22,7 @@
       <li class="nav-item">
         <a  routerLink="app/work/profils" class="nav-link">Profils</a>
 
-      </li>
+      </li> -->
     </ul>
 
 
@@ -26,17 +30,17 @@
   <ul class="navbar-nav ml-auto">
 
     <li class="nav-item"   >
-      <a routerLink="app/auth/register" class="nav-link" *ngIf="!loginStatus()">Regester</a>
+      <a routerLink="app/auth/register" class="nav-link" *ngIf="!loginStatus()">التسجيل</a>
 
     </li>
 
 
     <li class="nav-item" >
-      <a routerLink="app/auth/login" class="nav-link" *ngIf="!loginStatus()">Login</a>
+      <a routerLink="app/auth/login" class="nav-link" *ngIf="!loginStatus()">تسجيل الدخول</a>
 
     </li>
     <li class="nav-item"  *ngIf="loginStatus()">
-      <a [routerLink]="" (click)="Logout()" class="nav-link">Logout</a>
+      <a [routerLink]="" (click)="Logout()" class="nav-link">تسجيل خروج</a>
 
     </li>
     <!-- <li class="nav-item" *ngIf="islogin()">

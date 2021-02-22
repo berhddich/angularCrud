@@ -17,6 +17,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRippleModule } from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 import localeFr from '@angular/common/locales/fr';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -44,7 +45,7 @@ registerLocaleData(localeFr, 'fr');
 
 
   ],
-  imports: [MatSnackBarModule],
+  imports: [MatSnackBarModule ],
   exports: SharedModule.MODULE_LIST,
   entryComponents: []
 })
@@ -80,6 +81,7 @@ export class SharedModule {
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MaterialFileInputModule,
 
 
 
