@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppConfig } from 'src/app/config';
 import { AuthService } from 'src/app/service/auth.service';
 import { SnackBarService } from 'src/app/service/shared-service/studius-snack-bar/snack-bar.service';
 
@@ -29,6 +30,12 @@ export class RegisterComponent implements OnInit {
 
     }
 
+    else{
+
+      AppConfig.footer=false;
+      AppConfig.navbar=false;
+      AppConfig.sidebar=false;
+    }
     this.registerForm = this.fb.group({
       email: [, Validators.required],
       frestName: [, Validators.required],

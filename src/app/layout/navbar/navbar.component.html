@@ -1,4 +1,4 @@
- <nav class="navbar navbar-expand-sm navbar-dark bg-primary"> &nbsp;&nbsp;
+ <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-primary"> &nbsp;&nbsp;
   <a class="navbar-brand" routerLink="app/dashboard">فوق الخط</a>
   &nbsp;&nbsp;<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
     aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,16 +13,7 @@
         <a routerLink="app/work/news-admin" class="nav-link">الاخبار (المشرف)</a>
 
       </li>
-      <!-- <li class="nav-item">
-        <a routerLink="app/work/cars" class="nav-link">Cars</a>
 
-      </li>
-
-
-      <li class="nav-item">
-        <a  routerLink="app/work/profils" class="nav-link">Profils</a>
-
-      </li> -->
     </ul>
 
 
@@ -43,14 +34,36 @@
       <a [routerLink]="" (click)="Logout()" class="nav-link">تسجيل خروج</a>
 
     </li>
-    <!-- <li class="nav-item" *ngIf="islogin()">
-      <a routerLink="app/auth/login" class="nav-link">Logout </a>
-
-    </li> -->
 
 
 
 
   </ul>
 
-</nav>
+</nav> -->
+
+
+<mat-toolbar color="primary"  >
+  <!-- <mat-icon>account_balance</mat-icon> -->
+<img src="/assets/images/logo2.png" height="52" width="86" >
+<span class="logo">فوق الخط</span>
+
+  <button   mat-button   onclick="this.blur()"  mat-button routerLink="app/dashboard" >
+    الرئسية
+  </button>
+  <button   onclick="this.blur()"  mat-button  *ngIf="loginStatus()" routerLink="app/work/news-admin" >
+    الاخبار (المشرف)
+  </button>
+  <div class="spacer"></div>
+  <!-- <a  mat-raised-button color="accent"  routerLink="app/auth/register"  *ngIf="!loginStatus()">
+    <mat-icon>contact_page</mat-icon>
+
+  </a> &nbsp; -->
+  <a   style="background-color: #C0C0C0	;" mat-raised-button  color="accent" onclick="this.blur()"   *ngIf="!loginStatus()" routerLink="app/auth/login" >
+      <mat-icon>login</mat-icon>
+  </a>
+  <a    mat-raised-button color="accent"  (click)="Logout()" [routerLink]=""  *ngIf="loginStatus()"  >
+    <mat-icon>logout</mat-icon>
+  </a>
+
+</mat-toolbar>

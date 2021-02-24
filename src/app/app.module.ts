@@ -17,6 +17,9 @@ import { SharedModule } from './shared.module';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { AuthGuard } from './guards/auth.guard';
 import { EmailVerificationComponent } from './component/email-verification/email-verification.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { ContentComponent } from './layout/content/content.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 
 
 
@@ -78,6 +81,9 @@ const appRoutes: Route[] = [
   declarations: [
     AppComponent ,
     NavbarComponent,
+    FooterComponent,
+    ContentComponent,
+    SidebarComponent,
     EmailVerificationComponent
   ],
   imports: [

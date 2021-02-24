@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LayoutServiceService } from './service/layout-service.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'Angular Crud';
+  constructor(public _layoutService:LayoutServiceService)
+  {
+
+
+
+  }
+
 }

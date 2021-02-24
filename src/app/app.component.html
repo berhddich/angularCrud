@@ -19,5 +19,17 @@
 </div>
 
 <router-outlet></router-outlet> -->
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+
+<app-navbar *ngIf="_layoutService.getConfig().navbar"></app-navbar>
+
+<div class="container mt-5 "> <br>
+  <app-content></app-content>
+</div>
+<div>
+  <app-footer *ngIf="_layoutService.getConfig().footer" style=" position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  text-align: center;"></app-footer>
+</div>

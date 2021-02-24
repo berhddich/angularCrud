@@ -1,21 +1,42 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
-<div class="container mt-5">
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img      width="245"
+      height="182" src="/assets/images/logo2.png" id="icon" alt="User Icon" />
+    </div>
 
-  <div class="row">
-      <div class="col-md-4 offset-md-4">
-      <div class="card text-center card  bg-default mb-3">
-        <div class="card-header">
-          LOGIN
-        </div>
-        <div class="card-body" [formGroup]="loginForm">
-             <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="Username Or Email" formControlName="email" required />
-        <br>
-          <input type="password" id="userPassword" class="form-control input-sm chat-input" placeholder="Password" formControlName="password" required />
-        </div>
-        <div class="card-footer text-muted">
-          <button  (click)=save() class="btn btn-secondary">LOGIN</button>
-        </div>
-      </div>
-  </div>
+    <!-- Login Form -->
+    <div class="container">
+      <form class="container"   [formGroup]="loginForm">
+
+        <mat-form-field class="col-12" >
+          <mat-label>اسم المستخدم</mat-label>
+          <input matInput formControlName="email"  id="login" class="fadeIn second" name="login"  autocomplete="tenancyName">
+          <mat-icon matSuffix class="secondary-text">school</mat-icon>
+          <mat-error>
+            اسم المستخدم الزامي
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field  class="col-12" >
+        <mat-label>كلمة السر </mat-label>
+        <input matInput type="password" [type]="hide ? 'password' : 'text'" formControlName="password" autocomplete="current-password" required>
+        <mat-icon class="eyes"  matSuffix class="secondary-text"  (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error>
+          كلمة السر الزامية
+        </mat-error>
+    </mat-form-field>
+    <input type="button"  [disabled]="loginForm.invalid" (click)="save()"   class="fadeIn fourth" value="Log In">
+      </form>
+    </div>
+
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
   </div>
 </div>

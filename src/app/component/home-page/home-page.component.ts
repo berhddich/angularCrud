@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppConfig } from 'src/app/config';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -10,7 +11,11 @@ import { AuthService } from 'src/app/service/auth.service';
 export class HomePageComponent implements OnInit {
 
   constructor(private router: Router,
-    private _authService: AuthService) { }
+    private _authService: AuthService) {
+      AppConfig.footer=true;
+      AppConfig.navbar=true;
+      AppConfig.sidebar=true;
+  }
 
   ngOnInit() {
 
@@ -19,6 +24,7 @@ export class HomePageComponent implements OnInit {
     //   this.router.navigate(['app/auth/login']);
 
     // }
+
   }
 
 

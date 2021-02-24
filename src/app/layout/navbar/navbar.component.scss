@@ -1,0 +1,20 @@
+.spacer{
+
+flex: 1 1 auto;
+
+
+}
+.logo{
+  font-size: x-large;
+  color: #ffd740;
+  padding-bottom: 7px;
+  padding-left: 62px;
+}
+
+mat-toolbar {
+  position: fixed;
+  margin-top: -48px;
+  z-index: 100;
+  width: 100%  !important;
+}
+

@@ -2,6 +2,7 @@ import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppConfig } from 'src/app/config';
 import { AuthService } from 'src/app/service/auth.service';
 import { SnackBarService } from 'src/app/service/shared-service/studius-snack-bar/snack-bar.service';
 
@@ -12,6 +13,8 @@ import { SnackBarService } from 'src/app/service/shared-service/studius-snack-ba
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  hide = true;
+
   constructor(
     private _notify: SnackBarService,
     private fb: FormBuilder,
@@ -19,8 +22,19 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private _authService: AuthService) {
       if (this._authService.islogin()) {
-
+        AppConfig.footer=true;
+        AppConfig.navbar=true;
+        AppConfig.sidebar=true;
         this.router.navigate(['app/dashboard']);
+
+      }
+      else{
+
+        AppConfig.footer=false;
+        AppConfig.navbar=false;
+        AppConfig.sidebar=false;
+
+
 
       }
   }
@@ -47,6 +61,11 @@ export class LoginComponent implements OnInit {
         this._notify.openSuccess('Login completed');
         localStorage.setItem('user', JSON.stringify(auth['user']))
         this.router.navigate(['app/dashboard']);
+
+        AppConfig.footer=true;
+        AppConfig.navbar=true;
+        AppConfig.sidebar=true;
+
 
       }
 
