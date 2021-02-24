@@ -13,6 +13,7 @@ import { SnackBarService } from 'src/app/service/shared-service/studius-snack-ba
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  hide = true;
 
   constructor(
     private _notify: SnackBarService,
