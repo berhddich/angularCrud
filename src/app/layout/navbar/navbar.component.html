@@ -1,46 +1,3 @@
- <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-primary"> &nbsp;&nbsp;
-  <a class="navbar-brand" routerLink="app/dashboard">فوق الخط</a>
-  &nbsp;&nbsp;<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-    aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavId">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0"   >
-      <li class="nav-item active" >
-        <a class="nav-link" routerLink="app/dashboard">الرئسية<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item" *ngIf="loginStatus()">
-        <a routerLink="app/work/news-admin" class="nav-link">الاخبار (المشرف)</a>
-
-      </li>
-
-    </ul>
-
-
-  </div>
-  <ul class="navbar-nav ml-auto">
-
-    <li class="nav-item"   >
-      <a routerLink="app/auth/register" class="nav-link" *ngIf="!loginStatus()">التسجيل</a>
-
-    </li>
-
-
-    <li class="nav-item" >
-      <a routerLink="app/auth/login" class="nav-link" *ngIf="!loginStatus()">تسجيل الدخول</a>
-
-    </li>
-    <li class="nav-item"  *ngIf="loginStatus()">
-      <a [routerLink]="" (click)="Logout()" class="nav-link">تسجيل خروج</a>
-
-    </li>
-
-
-
-
-  </ul>
-
-</nav> -->
 
 
 <mat-toolbar color="primary"  >
@@ -48,12 +5,39 @@
 <img src="/assets/images/logo2.png" height="52" width="86" >
 <span class="logo">فوق الخط</span>
 
-  <button   mat-button   onclick="this.blur()"  mat-button routerLink="app/dashboard" >
+  <a   mat-button   onclick="this.blur()"  mat-button routerLink="app/dashboard" >
     الرئسية
-  </button>
-  <button   onclick="this.blur()"  mat-button  *ngIf="loginStatus()" routerLink="app/work/news-admin" >
+  </a>
+
+  <a mat-button     mat-button [matMenuTriggerFor]="menu"> الاخبار السياسية </a>
+<mat-menu #menu="matMenu" [overlapTrigger]="false">
+
+
+<a mat-menu-item   >
+  <span>المحلية</span>
+</a>
+<a mat-menu-item   >
+  <span>الدولية</span>
+</a>
+
+</mat-menu>
+
+<a mat-button     mat-button [matMenuTriggerFor]="menus"> الاخبار فنية </a>
+<mat-menu #menus="matMenu" [overlapTrigger]="false">
+
+
+<a mat-menu-item   >
+  <span>افلام ومسلسلات</span>
+</a>
+<a mat-menu-item   >
+  <span>موسيقة</span>
+</a>
+
+</mat-menu>
+  <a     mat-button  *ngIf="loginStatus()" routerLink="app/work/news-admin" >
     الاخبار (المشرف)
-  </button>
+  </a>
+
   <div class="spacer"></div>
   <!-- <a  mat-raised-button color="accent"  routerLink="app/auth/register"  *ngIf="!loginStatus()">
     <mat-icon>contact_page</mat-icon>

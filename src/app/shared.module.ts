@@ -25,6 +25,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SnackBarService } from './service/shared-service/studius-snack-bar/snack-bar.service';
+import {MatMenuModule} from '@angular/material/menu';
+
 export const DATETIME_FORMATS = {
   parse: {
     dateInput: 'l, L, LTS',
@@ -55,7 +57,7 @@ export class SharedModule {
 
     MatButtonModule,
     MatFormFieldModule,
-
+    MatMenuModule,
     MatIconModule,
     MatInputModule,
 
