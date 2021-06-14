@@ -20,6 +20,7 @@ import { EmailVerificationComponent } from './component/email-verification/email
 import { FooterComponent } from './layout/footer/footer.component';
 import { ContentComponent } from './layout/content/content.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -95,6 +96,7 @@ const appRoutes: Route[] = [
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
